@@ -1,6 +1,6 @@
 # Layered Living Light
 
-Interactive layered p5.js installation for highlighting endangered species on the Sunshine Coast.
+Layered Living Light is a participatory immersive installation exploring the challenges of the Sunshine Coast's native species.
 
 The app runs as a local browser-based installation. It uses AprilTag placards and keyboard fallbacks to trigger animal PNG animations, rare animal moments, ambient nature effects, a day/night scene cycle, counters, and background audio.
 
