@@ -1,0 +1,32 @@
+[
+  {
+    "id": 0,
+    "label": "birds",
+    "tagFamily": "tag36h11",
+    "image": "tags/birds-tag36h11-0.png"
+  },
+  {
+    "id": 1,
+    "label": "mammals",
+    "tagFamily": "tag36h11",
+    "image": "tags/mammals-tag36h11-1.png"
+  },
+  {
+    "id": 2,
+    "label": "insects",
+    "tagFamily": "tag36h11",
+    "image": "tags/insects-tag36h11-2.png"
+  },
+  {
+    "id": 3,
+    "label": "reptiles",
+    "tagFamily": "tag36h11",
+    "image": "tags/reptiles-tag36h11-3.png"
+  },
+  {
+    "id": 4,
+    "label": "mystery",
+    "tagFamily": "tag36h11",
+    "image": "tags/mystery-tag36h11-4.png"
+  }
+]

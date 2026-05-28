@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 960 108">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient);
+        opacity: .81;
+      }
+
+      .cls-3 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-1" width="960" height="108"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" x1="480" y1="-1277.13" x2="480" y2="-1299.34" gradientTransform="translate(0 -1277.13) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f9ed32" stop-opacity=".2"/>
+      <stop offset=".47" stop-color="#ef4272" stop-opacity=".22"/>
+      <stop offset=".64" stop-color="#ec008c" stop-opacity=".23"/>
+      <stop offset=".78" stop-color="#ea018c" stop-opacity=".24"/>
+      <stop offset=".83" stop-color="#e3078f" stop-opacity=".27"/>
+      <stop offset=".87" stop-color="#d81193" stop-opacity=".32"/>
+      <stop offset=".9" stop-color="#c71f9a" stop-opacity=".39"/>
+      <stop offset=".93" stop-color="#b231a2" stop-opacity=".49"/>
+      <stop offset=".95" stop-color="#9848ad" stop-opacity=".61"/>
+      <stop offset=".97" stop-color="#7963b9" stop-opacity=".75"/>
+      <stop offset=".99" stop-color="#5581c7" stop-opacity=".91"/>
+      <stop offset="1" stop-color="#4392cf"/>
+    </linearGradient>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="Sunset">
+      <g class="cls-3">
+        <rect id="Sunset-2" data-name="Sunset" class="cls-2" x="-.44" width="960.88" height="22.2"/>
+      </g>
+    </g>
+  </g>
+</svg>

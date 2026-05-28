@@ -1,0 +1,104 @@
+[
+  {
+    "name": "moth",
+    "image": "assets/png/rare-nature/1x/moth-leaves.png",
+    "renderBehindLayer": null,
+    "x": 376,
+    "y": 928,
+    "duration": 15000,
+    "motion": "shake",
+    "sourceWidth": 640,
+    "scale": 1
+  },
+  {
+    "name": "koala",
+    "image": "assets/png/rare-nature/1x/koala-leaves.png",
+    "renderBehindLayer": null,
+    "x": 1633,
+    "y": 32,
+    "duration": 30000,
+    "motion": "fall from top to bottom",
+    "sourceWidth": 219,
+    "scale": 1
+  },
+  {
+    "name": "curlew",
+    "image": "assets/png/rare-nature/1x/curlew-waves.png",
+    "renderBehindLayer": 4,
+    "x": 1701,
+    "y": 273,
+    "duration": 15000,
+    "motion": "pulse",
+    "sourceWidth": 1317,
+    "scale": 1.503
+  },
+  {
+    "name": "potaroo",
+    "image": "assets/png/rare-nature/1x/potaroo-grass.png",
+    "renderBehindLayer": null,
+    "x": 5761,
+    "y": 1043,
+    "duration": 15000,
+    "motion": "sway",
+    "sourceWidth": 285,
+    "scale": 1
+  },
+  {
+    "name": "frittilary",
+    "image": "assets/png/rare-nature/1x/frittilary-grass.png",
+    "renderBehindLayer": null,
+    "x": 7423,
+    "y": 957,
+    "duration": 15000,
+    "motion": "sway",
+    "sourceWidth": 425,
+    "scale": 1
+  },
+  {
+    "name": "turtle",
+    "image": "assets/png/rare-nature/1x/turtle-creek.png",
+    "renderBehindLayer": null,
+    "x": 8593,
+    "y": 812,
+    "anchorToParent": true,
+    "offsetX": 0,
+    "offsetY": -5,
+    "duration": 15000,
+    "motion": "pulse",
+    "sourceWidth": 1352,
+    "scale": 0.333
+  },
+  {
+    "name": "frog",
+    "image": "assets/png/rare-nature/1x/frog-leaves.png",
+    "renderBehindLayer": null,
+    "x": 9345,
+    "y": 716,
+    "duration": 15000,
+    "motion": "shake",
+    "sourceWidth": 197,
+    "scale": 1
+  },
+  {
+    "name": "quoll",
+    "image": "assets/png/rare-nature/1x/quoll-wind.png",
+    "renderBehindLayer": null,
+    "x": 6517,
+    "y": 412,
+    "duration": 15000,
+    "motion": "move from right to left",
+    "sourceWidth": 1038,
+    "scale": 1.503
+  },
+  {
+    "name": "cockatoo",
+    "image": "assets/png/rare-nature/1x/cockatoo-wind.png",
+    "renderBehindLayer": null,
+    "x": 361,
+    "y": 210,
+    "duration": 15000,
+    "motion": "move from left to right",
+    "sourceWidth": 678,
+    "scale": 1.549
+  }
+]

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layered Living Light Placards</title>
+  <style>
+    :root {
+      color: #171512;
+      background: #f8f3e8;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 24px;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    article {
+      break-inside: avoid;
+      background: #fffdf7;
+      border: 2px solid #171512;
+      border-radius: 8px;
+      box-sizing: border-box;
+      min-height: 360px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 18px;
+      letter-spacing: 0;
+      margin: 0 0 20px;
+      text-transform: uppercase;
+    }
+
+    img {
+      background: #fff;
+      border: 18px solid #fff;
+      box-shadow: 0 0 0 2px #171512;
+      image-rendering: pixelated;
+      width: min(72vw, 220px);
+    }
+
+    p {
+      font-size: 13px;
+      line-height: 1.35;
+      margin: 18px auto 0;
+      max-width: 24ch;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 10mm;
+      }
+
+      main {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      article {
+        min-height: 126mm;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <article>
+      <h1>Birds</h1>
+      <img src="tags/birds-tag36h11-0.png" alt="AprilTag 0 for birds">
+      <p>Tag ID 0. Triggers the birds category.</p>
+    </article>
+
+    <article>
+      <h1>Mammals</h1>
+      <img src="tags/mammals-tag36h11-1.png" alt="AprilTag 1 for mammals">
+      <p>Tag ID 1. Triggers the mammals category.</p>
+    </article>
+
+    <article>
+      <h1>Insects</h1>
+      <img src="tags/insects-tag36h11-2.png" alt="AprilTag 2 for insects">
+      <p>Tag ID 2. Triggers the insects category.</p>
+    </article>
+
+    <article>
+      <h1>Reptiles</h1>
+      <img src="tags/reptiles-tag36h11-3.png" alt="AprilTag 3 for reptiles">
+      <p>Tag ID 3. Triggers the reptiles category.</p>
+    </article>
+
+    <article>
+      <h1>Mystery</h1>
+      <img src="tags/mystery-tag36h11-4.png" alt="AprilTag 4 for mystery">
+      <p>Tag ID 4. Randomly triggers one category.</p>
+    </article>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,732 @@
+{
+  "birds": [
+    {
+      "name": "magpie1",
+      "rarity": "normal",
+      "image": "assets/png/1x/magpie1.png",
+      "x": 4762,
+      "y": 517,
+      "size": 337,
+      "duration": 120000,
+      "motion": "bob",
+      "motionAmountX": 0,
+      "motionAmountY": 18,
+      "motionSpeed": 1,
+      "rotation": [
+        -0.03,
+        0.03
+      ]
+    },
+    {
+      "name": "magpie2",
+      "rarity": "normal",
+      "image": "assets/png/1x/magpie2.png",
+      "x": 4935,
+      "y": 543,
+      "size": 337,
+      "duration": 120000,
+      "motion": "bob",
+      "motionAmountX": 0,
+      "motionAmountY": 18,
+      "motionSpeed": 1,
+      "rotation": [
+        -0.03,
+        0.03
+      ]
+    },
+    {
+      "name": "magpie-ground1",
+      "rarity": "normal",
+      "image": "assets/png/1x/magpie-ground1.png",
+      "x": 2230,
+      "y": 895,
+      "size": 331,
+      "duration": 120000,
+      "motion": "hop",
+      "motionAmountX": 12,
+      "motionAmountY": 22,
+      "motionSpeed": 1.1,
+      "rotation": [
+        -0.04,
+        0.04
+      ]
+    },
+    {
+      "name": "magpie-ground2",
+      "rarity": "normal",
+      "image": "assets/png/1x/magpie-ground2.png",
+      "x": 2378,
+      "y": 976,
+      "size": 330,
+      "duration": 120000,
+      "motion": "hop",
+      "motionAmountX": 12,
+      "motionAmountY": 22,
+      "motionSpeed": 1.1,
+      "rotation": [
+        -0.04,
+        0.04
+      ]
+    },
+    {
+      "name": "cockatoo-front1",
+      "rarity": "normal",
+      "image": "assets/png/1x/cockatoo-front1.png",
+      "x": 6824,
+      "y": 170,
+      "size": 331,
+      "duration": 120000,
+      "motion": "sway",
+      "motionAmountX": 18,
+      "motionAmountY": 0,
+      "motionSpeed": 0.9,
+      "rotation": [
+        -0.04,
+        0.04
+      ]
+    },
+    {
+      "name": "cockatoo-front2",
+      "rarity": "normal",
+      "image": "assets/png/1x/cockatoo-front2.png",
+      "x": 7074,
+      "y": 349,
+      "size": 331,
+      "duration": 120000,
+      "motion": "sway",
+      "motionAmountX": 18,
+      "motionAmountY": 0,
+      "motionSpeed": 0.9,
+      "rotation": [
+        -0.04,
+        0.04
+      ]
+    },
+    {
+      "name": "cockatoo-front3",
+      "rarity": "normal",
+      "image": "assets/png/1x/cockatoo-front3.png",
+      "x": 7206,
+      "y": 99,
+      "size": 331,
+      "duration": 120000,
+      "motion": "sway",
+      "motionAmountX": 18,
+      "motionAmountY": 0,
+      "motionSpeed": 0.9,
+      "rotation": [
+        -0.04,
+        0.04
+      ]
+    },
+    {
+      "name": "cockatoo-front4",
+      "rarity": "normal",
+      "image": "assets/png/1x/cockatoo-front4.png",
+      "x": 5640,
+      "y": 476,
+      "size": 331,
+      "duration": 120000,
+      "motion": "sway",
+      "motionAmountX": 18,
+      "motionAmountY": 0,
+      "motionSpeed": 0.9,
+      "rotation": [
+        -0.04,
+        0.04
+      ]
+    },
+    {
+      "name": "cockatoo-front5",
+      "rarity": "normal",
+      "image": "assets/png/1x/cockatoo-front5.png",
+      "x": 5767,
+      "y": 252,
+      "size": 331,
+      "duration": 120000,
+      "motion": "sway",
+      "motionAmountX": 18,
+      "motionAmountY": 0,
+      "motionSpeed": 0.9,
+      "rotation": [
+        -0.04,
+        0.04
+      ]
+    },
+    {
+      "name": "cockatoo-front6",
+      "rarity": "normal",
+      "image": "assets/png/1x/cockatoo-front6.png",
+      "x": 5900,
+      "y": 486,
+      "size": 331,
+      "duration": 120000,
+      "motion": "sway",
+      "motionAmountX": 18,
+      "motionAmountY": 0,
+      "motionSpeed": 0.9,
+      "rotation": [
+        -0.04,
+        0.04
+      ]
+    },
+    {
+      "name": "cockatoo-background1",
+      "rarity": "normal",
+      "image": "assets/png/1x/cockatoo-background1.png",
+      "x": 7513,
+      "y": 420,
+      "size": 330,
+      "duration": 120000,
+      "motion": "sway",
+      "motionAmountX": 18,
+      "motionAmountY": 0,
+      "motionSpeed": 0.9,
+      "rotation": [
+        -0.04,
+        0.04
+      ],
+      "renderBehindLayer": 9
+    },
+    {
+      "name": "cockatoo-background2",
+      "rarity": "normal",
+      "image": "assets/png/1x/cocktoo-background2.png",
+      "x": 7589,
+      "y": 553,
+      "size": 331,
+      "duration": 120000,
+      "motion": "sway",
+      "motionAmountX": 18,
+      "motionAmountY": 0,
+      "motionSpeed": 0.9,
+      "rotation": [
+        -0.04,
+        0.04
+      ],
+      "renderBehindLayer": 9
+    },
+    {
+      "name": "cockatoo-background3",
+      "rarity": "normal",
+      "image": "assets/png/1x/cockatoo-background3.png",
+      "x": 7752,
+      "y": 451,
+      "size": 331,
+      "duration": 120000,
+      "motion": "sway",
+      "motionAmountX": 18,
+      "motionAmountY": 0,
+      "motionSpeed": 0.9,
+      "rotation": [
+        -0.04,
+        0.04
+      ],
+      "renderBehindLayer": 9
+    },
+    {
+      "name": "black-cockatoo",
+      "rarity": "rare",
+      "image": "assets/png/1x/black-cockatoo.png",
+      "x": 1240,
+      "y": 461,
+      "size": 327,
+      "duration": 30000,
+      "motion": "sway",
+      "motionAmountX": 18,
+      "motionAmountY": 0,
+      "motionSpeed": 0.9,
+      "rotation": [
+        -0.04,
+        0.04
+      ]
+    },
+    {
+      "name": "black-cockatoo-flying",
+      "rarity": "rare",
+      "image": "assets/png/1x/black-cockatoo-flying.png",
+      "x": 3169,
+      "y": 517,
+      "size": 327,
+      "duration": 30000,
+      "motion": "fly",
+      "motionAmountX": 1200,
+      "motionAmountY": -80,
+      "motionSpeed": 1,
+      "rotation": [
+        -0.08,
+        0.08
+      ]
+    },
+    {
+      "name": "curlew",
+      "rarity": "rare",
+      "image": "assets/png/1x/curlew1.png",
+      "x": 1914,
+      "y": 379,
+      "size": 331,
+      "duration": 30000,
+      "motion": "flutter",
+      "motionAmountX": 20,
+      "motionAmountY": 14,
+      "motionSpeed": 1.8,
+      "rotation": [
+        -0.08,
+        0.08
+      ],
+      "renderBehindLayer": 9
+    },
+    {
+      "name": "curlew2",
+      "rarity": "rare",
+      "image": "assets/png/1x/curlew2.png",
+      "x": 2031,
+      "y": 369,
+      "size": 330,
+      "duration": 30000,
+      "motion": "flutter",
+      "motionAmountX": 20,
+      "motionAmountY": 14,
+      "motionSpeed": 1.8,
+      "rotation": [
+        -0.08,
+        0.08
+      ],
+      "renderBehindLayer": 9
+    }
+  ],
+  "mammals": [
+    {
+      "name": "koala",
+      "rarity": "rare",
+      "image": "assets/png/1x/koala.png",
+      "x": 1577,
+      "y": 206,
+      "size": 327,
+      "duration": 30000,
+      "motion": "sway",
+      "motionAmountX": 18,
+      "motionAmountY": 0,
+      "motionSpeed": 0.9,
+      "rotation": [
+        -0.04,
+        0.04
+      ]
+    },
+    {
+      "name": "potaroo",
+      "rarity": "rare",
+      "image": "assets/png/1x/potaroo.png",
+      "x": 5782,
+      "y": 1017,
+      "size": 331,
+      "duration": 30000,
+      "motion": "hop",
+      "motionAmountX": 12,
+      "motionAmountY": 22,
+      "motionSpeed": 1.1,
+      "rotation": [
+        -0.04,
+        0.04
+      ]
+    },
+    {
+      "name": "spottedquoll",
+      "rarity": "rare",
+      "image": "assets/png/1x/spottedquoll.png",
+      "x": 6339,
+      "y": 976,
+      "size": 331,
+      "duration": 30000,
+      "motion": "hop",
+      "motionAmountX": 12,
+      "motionAmountY": 22,
+      "motionSpeed": 1.1,
+      "rotation": [
+        -0.04,
+        0.04
+      ]
+    },
+    {
+      "name": "wallaby-front1",
+      "rarity": "normal",
+      "image": "assets/png/1x/wallaby-front1.png",
+      "x": 1643,
+      "y": 721,
+      "size": 330,
+      "duration": 120000,
+      "motion": "hop",
+      "motionAmountX": 12,
+      "motionAmountY": 22,
+      "motionSpeed": 1.1,
+      "rotation": [
+        -0.04,
+        0.04
+      ]
+    },
+    {
+      "name": "wallaby-front2",
+      "rarity": "normal",
+      "image": "assets/png/1x/wallaby-front2.png",
+      "x": 2052,
+      "y": 665,
+      "size": 331,
+      "duration": 120000,
+      "motion": "hop",
+      "motionAmountX": 12,
+      "motionAmountY": 22,
+      "motionSpeed": 1.1,
+      "rotation": [
+        -0.04,
+        0.04
+      ]
+    },
+    {
+      "name": "wallaby-front3",
+      "rarity": "normal",
+      "image": "assets/png/1x/wallaby-front3.png",
+      "x": 2159,
+      "y": 588,
+      "size": 331,
+      "duration": 120000,
+      "motion": "hop",
+      "motionAmountX": 12,
+      "motionAmountY": 22,
+      "motionSpeed": 1.1,
+      "rotation": [
+        -0.04,
+        0.04
+      ]
+    },
+    {
+      "name": "wallaby-front4",
+      "rarity": "normal",
+      "image": "assets/png/1x/wallaby-front4.png",
+      "x": 2138,
+      "y": 502,
+      "size": 331,
+      "duration": 120000,
+      "motion": "hop",
+      "motionAmountX": 12,
+      "motionAmountY": 22,
+      "motionSpeed": 1.1,
+      "rotation": [
+        -0.04,
+        0.04
+      ]
+    },
+    {
+      "name": "wallaby-front5",
+      "rarity": "normal",
+      "image": "assets/png/1x/wallaby-front5.png",
+      "x": 2292,
+      "y": 543,
+      "size": 331,
+      "duration": 120000,
+      "motion": "hop",
+      "motionAmountX": 12,
+      "motionAmountY": 22,
+      "motionSpeed": 1.1,
+      "rotation": [
+        -0.04,
+        0.04
+      ]
+    },
+    {
+      "name": "wallaby-background1",
+      "rarity": "normal",
+      "image": "assets/png/1x/wallaby-background1.png",
+      "x": 8115,
+      "y": 471,
+      "size": 330,
+      "duration": 120000,
+      "motion": "hop",
+      "motionAmountX": 12,
+      "motionAmountY": 22,
+      "motionSpeed": 1.1,
+      "rotation": [
+        -0.04,
+        0.04
+      ],
+      "renderBehindLayer": 9
+    },
+    {
+      "name": "wallaby-background2",
+      "rarity": "normal",
+      "image": "assets/png/1x/wallaby-background2.png",
+      "x": 8207,
+      "y": 400,
+      "size": 331,
+      "duration": 120000,
+      "motion": "hop",
+      "motionAmountX": 12,
+      "motionAmountY": 22,
+      "motionSpeed": 1.1,
+      "rotation": [
+        -0.04,
+        0.04
+      ],
+      "renderBehindLayer": 9
+    },
+    {
+      "name": "wallaby-background3",
+      "rarity": "normal",
+      "image": "assets/png/1x/wallaby-background3.png",
+      "x": 8217,
+      "y": 471,
+      "size": 330,
+      "duration": 120000,
+      "motion": "hop",
+      "motionAmountX": 12,
+      "motionAmountY": 22,
+      "motionSpeed": 1.1,
+      "rotation": [
+        -0.04,
+        0.04
+      ],
+      "renderBehindLayer": 9
+    }
+  ],
+  "insects": [
+    {
+      "name": "moth",
+      "rarity": "rare",
+      "image": "assets/png/1x/moth.png",
+      "x": 163,
+      "y": 966,
+      "size": 327,
+      "duration": 30000,
+      "motion": "flutter",
+      "motionAmountX": 20,
+      "motionAmountY": 14,
+      "motionSpeed": 1.8,
+      "rotation": [
+        -0.08,
+        0.08
+      ]
+    },
+    {
+      "name": "butterfly1",
+      "rarity": "normal",
+      "image": "assets/png/1x/butterfly1.png",
+      "x": 4277,
+      "y": 987,
+      "size": 331,
+      "duration": 120000,
+      "motion": "flutter",
+      "motionAmountX": 20,
+      "motionAmountY": 14,
+      "motionSpeed": 1.8,
+      "rotation": [
+        -0.08,
+        0.08
+      ]
+    },
+    {
+      "name": "butterfly2",
+      "rarity": "normal",
+      "image": "assets/png/1x/butterfly2.png",
+      "x": 4404,
+      "y": 890,
+      "size": 330,
+      "duration": 120000,
+      "motion": "flutter",
+      "motionAmountX": 20,
+      "motionAmountY": 14,
+      "motionSpeed": 1.8,
+      "rotation": [
+        -0.08,
+        0.08
+      ]
+    },
+    {
+      "name": "butterfly2",
+      "rarity": "normal",
+      "image": "assets/png/1x/butterfly3.png",
+      "x": 4675,
+      "y": 1033,
+      "size": 331,
+      "duration": 120000,
+      "motion": "flutter",
+      "motionAmountX": 20,
+      "motionAmountY": 14,
+      "motionSpeed": 1.8,
+      "rotation": [
+        -0.08,
+        0.08
+      ]
+    },
+    {
+      "name": "frittilary",
+      "rarity": "rare",
+      "image": "assets/png/1x/frittilary.png",
+      "x": 6997,
+      "y": 803,
+      "size": 330,
+      "duration": 30000,
+      "motion": "flutter",
+      "motionAmountX": 20,
+      "motionAmountY": 14,
+      "motionSpeed": 1.8,
+      "rotation": [
+        -0.08,
+        0.08
+      ]
+    },
+    {
+      "name": "frittilary",
+      "rarity": "rare",
+      "image": "assets/png/1x/frittilary2.png",
+      "x": 7130,
+      "y": 895,
+      "size": 331,
+      "duration": 30000,
+      "motion": "flutter",
+      "motionAmountX": 20,
+      "motionAmountY": 14,
+      "motionSpeed": 1.8,
+      "rotation": [
+        -0.08,
+        0.08
+      ]
+    },
+    {
+      "name": "dragonfly1",
+      "rarity": "normal",
+      "image": "assets/png/1x/dragonfly1.png",
+      "x": 9233,
+      "y": 844,
+      "size": 331,
+      "duration": 120000,
+      "motion": "bob",
+      "motionAmountX": 0,
+      "motionAmountY": 18,
+      "motionSpeed": 1,
+      "rotation": [
+        -0.03,
+        0.03
+      ]
+    },
+    {
+      "name": "dragonfly2",
+      "rarity": "normal",
+      "image": "assets/png/1x/dragonfly2.png",
+      "x": 9345,
+      "y": 711,
+      "size": 331,
+      "duration": 120000,
+      "motion": "bob",
+      "motionAmountX": 0,
+      "motionAmountY": 18,
+      "motionSpeed": 1,
+      "rotation": [
+        -0.03,
+        0.03
+      ]
+    },
+    {
+      "name": "dragonfly3",
+      "rarity": "normal",
+      "image": "assets/png/1x/dragonfly3.png",
+      "x": 9238,
+      "y": 619,
+      "size": 331,
+      "duration": 120000,
+      "motion": "bob",
+      "motionAmountX": 0,
+      "motionAmountY": 18,
+      "motionSpeed": 1,
+      "rotation": [
+        -0.03,
+        0.03
+      ]
+    }
+  ],
+  "reptiles": [
+    {
+      "name": "lacemonitor",
+      "rarity": "normal",
+      "image": "assets/png/1x/lacemonitor.png",
+      "x": 6788,
+      "y": 884,
+      "size": 331,
+      "duration": 120000,
+      "motion": "crawl",
+      "motionAmountX": 24,
+      "motionAmountY": 4,
+      "motionSpeed": 0.7,
+      "rotation": [
+        -0.02,
+        0.02
+      ]
+    },
+    {
+      "name": "gecko1",
+      "rarity": "normal",
+      "image": "assets/png/1x/gecko1.png",
+      "x": 8503,
+      "y": 1007,
+      "size": 331,
+      "duration": 120000,
+      "motion": "breathe",
+      "motionAmountX": 0,
+      "motionAmountY": 8,
+      "motionSpeed": 0.8,
+      "rotation": [
+        -0.02,
+        0.02
+      ]
+    },
+    {
+      "name": "gecko2",
+      "rarity": "normal",
+      "image": "assets/png/1x/gecko2.png",
+      "x": 8625,
+      "y": 1043,
+      "size": 330,
+      "duration": 120000,
+      "motion": "breathe",
+      "motionAmountX": 0,
+      "motionAmountY": 8,
+      "motionSpeed": 0.8,
+      "rotation": [
+        -0.02,
+        0.02
+      ]
+    },
+    {
+      "name": "turtle",
+      "rarity": "rare",
+      "image": "assets/png/1x/turtle.png",
+      "x": 8880,
+      "y": 941,
+      "size": 330,
+      "duration": 30000,
+      "motion": "crawl",
+      "motionAmountX": 24,
+      "motionAmountY": 4,
+      "motionSpeed": 0.7,
+      "rotation": [
+        -0.02,
+        0.02
+      ]
+    },
+    {
+      "name": "frog",
+      "rarity": "rare",
+      "image": "assets/png/1x/frog.png",
+      "x": 9396,
+      "y": 997,
+      "size": 67,
+      "duration": 30000,
+      "motion": "breathe",
+      "motionAmountX": 0,
+      "motionAmountY": 8,
+      "motionSpeed": 0.8,
+      "rotation": [
+        -0.02,
+        0.02
+      ]
+    }
+  ]
+}
