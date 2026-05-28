@@ -26,9 +26,6 @@ let placardDetections = [];
 
 let activeLayers = [];
 let sparkleBursts = [];
-let placementPoints = [];
-let placementStatus = "Ready";
-let lastPlacementShortcut = 0;
 let lastSceneActivity = 0;
 let sceneEmptySince = 0;
 let nightSceneCountersActive = true;
@@ -257,12 +254,6 @@ const categoryAssetLists = [
   { label: "insects", assets: () => insectAssets },
   { label: "reptiles", assets: () => reptileAssets }
 ];
-
-const placementSettings = {
-  enabled: true,
-  markerSize: 42,
-  markerColor: [255, 64, 176]
-};
 
 const backgroundLayerSettings = [
   { index: 1, name: "sky", path: "assets/BACKGROUND/fullwidth/200ppi/1-Sky.png" },
@@ -586,7 +577,7 @@ function getNaturePresetForAnimal(preset) {
 async function setup() {
 
   createCanvas(windowWidth, windowHeight);
-  setupPlacementKeyboard();
+  setupInteractionKeyboard();
   setupAnimalAssets(animalPresetData || {});
 
   applyPaperTreatmentToLayers();
@@ -624,7 +615,6 @@ function draw() {
 
   drawSceneLayers();
   drawSparkleBursts();
-  drawPlacementMarkers();
 
   //image(video, 0, 0, 640, 480);
 
@@ -642,7 +632,7 @@ function draw() {
 
   pop();
 
-  drawPlacementHud();
+  drawInstallStatusHud();
 }
 
 function applySceneTransform() {
@@ -1084,41 +1074,8 @@ function drawForeground() {
   }
 }
 
-function drawPlacementMarkers() {
-  if (!placementSettings.enabled) return;
-
-  for (let i = 0; i < placementPoints.length; i++) {
-    const point = placementPoints[i];
-    const markerSize = placementSettings.markerSize;
-
-    push();
-    translate(point.x, point.y);
-    stroke(placementSettings.markerColor);
-    strokeWeight(5);
-    noFill();
-    line(-markerSize, 0, markerSize, 0);
-    line(0, -markerSize, 0, markerSize);
-    circle(0, 0, markerSize);
-    noStroke();
-    fill(placementSettings.markerColor);
-    textAlign(CENTER, BOTTOM);
-    textSize(34);
-    text(i + 1, 0, -markerSize * 0.7);
-    pop();
-  }
-}
-
-function drawPlacementHud() {
-  if (!placementSettings.enabled) return;
-
-  const latest = placementPoints[placementPoints.length - 1];
+function drawInstallStatusHud() {
   const lines = [
-    "Placement mode",
-    "Click the scene to record a 9600 x 1080 coordinate.",
-    latest ? `Latest: { x: ${latest.x}, y: ${latest.y} }` : "Latest: none yet",
-    "Press C to copy all points. Press U to undo.",
-    "Press B/M/I/R to test each PNG category.",
-    `Status: ${placementStatus}`,
     `Tag: ${lastDetectedPlacardLabel}`,
     placardStatus,
     getCategoryDebugLine()
@@ -1131,7 +1088,7 @@ function drawPlacementHud() {
   textAlign(LEFT, TOP);
   noStroke();
   fill(0, 190);
-  rect(14, 14, 650, 220, 6);
+  rect(14, 14, 650, 88, 6);
   fill(255);
 
   for (let i = 0; i < lines.length; i++) {
@@ -1570,7 +1527,6 @@ function spawnFromCategory(categoryArray, categoryLabel = "category") {
   const assetCategoryLabel = asset.categoryLabel || categoryLabel;
 
   const spawnedLayer = spawnAsset(asset, null, null, assetCategoryLabel);
-  placementStatus = `Spawned ${asset.name || assetCategoryLabel}`;
   console.log(`Spawned ${assetCategoryLabel}: ${asset.name || asset.path}`);
 
   if (asset.companion) {
@@ -1778,10 +1734,10 @@ function updateAmbientSoundVolume() {
   ambientSound.volume = constrain(ambientCurrentVolume, 0, 1);
 }
 
-function setupPlacementKeyboard() {
-  if (!placementSettings.enabled || window.__placementKeyboardReady) return;
+function setupInteractionKeyboard() {
+  if (window.__interactionKeyboardReady) return;
 
-  window.__placementKeyboardReady = true;
+  window.__interactionKeyboardReady = true;
   window.addEventListener("pointerdown", startAmbientSound);
   window.addEventListener("touchstart", startAmbientSound);
   window.addEventListener("keydown", (event) => {
@@ -1793,36 +1749,11 @@ function setupPlacementKeyboard() {
 
 function handleKeyboardShortcut(shortcutKey, isRepeat = false) {
   startAmbientSound();
-  if (handlePlacementShortcut(shortcutKey)) return true;
   return handleCategoryShortcut(shortcutKey, isRepeat);
 }
 
-function handlePlacementShortcut(shortcutKey) {
-  if (!placementSettings.enabled) return false;
-
-  const normalizedKey = shortcutKey.toLowerCase();
-
-  if (normalizedKey !== "c" && normalizedKey !== "u") return false;
-
-  if (millis() - lastPlacementShortcut < 120) return true;
-
-  lastPlacementShortcut = millis();
-
-  if (normalizedKey === "c") {
-    copyPlacementPoints();
-    return true;
-  }
-
-  if (normalizedKey === "u") {
-    undoPlacementPoint();
-    return true;
-  }
-
-  return false;
-}
-
 function keyPressed() {
-  if (window.__placementKeyboardReady) return;
+  if (window.__interactionKeyboardReady) return;
   handleKeyboardShortcut(key);
 }
 
@@ -1835,7 +1766,6 @@ function handleCategoryShortcut(shortcutKey, isRepeat = false) {
   const now = millis();
 
   if (now - lastCategoryShortcut < categoryShortcutCooldown) {
-    placementStatus = "Category shortcut cooling down";
     return true;
   }
 
@@ -1867,55 +1797,6 @@ function handleCategoryShortcut(shortcutKey, isRepeat = false) {
 
 function mousePressed() {
   startAmbientSound();
-
-  if (!placementSettings.enabled || !isInsideScene(mouseX, mouseY)) return;
-
-  const scenePoint = screenToScene(mouseX, mouseY);
-  const point = {
-    x: Math.round(scenePoint.x),
-    y: Math.round(scenePoint.y)
-  };
-
-  placementPoints.push(point);
-  placementStatus = `Added point ${placementPoints.length}: { x: ${point.x}, y: ${point.y} }`;
-  console.log("PLACEMENT_POINT", point);
-  console.log("PLACEMENT_POINTS", JSON.stringify(placementPoints));
-}
-
-function undoPlacementPoint() {
-  const removedPoint = placementPoints.pop();
-
-  placementStatus = removedPoint
-    ? `Removed point: { x: ${removedPoint.x}, y: ${removedPoint.y} }`
-    : "No points to undo";
-
-  console.log("PLACEMENT_POINTS", JSON.stringify(placementPoints));
-}
-
-function copyPlacementPoints() {
-  const text = JSON.stringify(placementPoints, null, 2);
-
-  if (placementPoints.length === 0) {
-    placementStatus = "No points to copy yet";
-    console.log("PLACEMENT_POINTS", text);
-    return;
-  }
-
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(text)
-      .then(() => {
-        placementStatus = `Copied ${placementPoints.length} point${placementPoints.length === 1 ? "" : "s"} to clipboard`;
-        console.log("PLACEMENT_POINTS_COPIED", text);
-      })
-      .catch(() => {
-        placementStatus = "Clipboard blocked; points printed to console";
-        console.log("PLACEMENT_POINTS", text);
-      });
-    return;
-  }
-
-  placementStatus = "Clipboard unavailable; points printed to console";
-  console.log("PLACEMENT_POINTS", text);
 }
 
 function pickLayerValue(value, scale = 1) {
