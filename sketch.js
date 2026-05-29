@@ -631,8 +631,6 @@ function draw() {
   }
 
   pop();
-
-  drawInstallStatusHud();
 }
 
 function applySceneTransform() {
@@ -1072,47 +1070,6 @@ function drawForeground() {
       drawBackgroundLayer(layer);
     }
   }
-}
-
-function drawInstallStatusHud() {
-  const lines = [
-    `Tag: ${lastDetectedPlacardLabel}`,
-    placardStatus,
-    getCategoryDebugLine()
-  ];
-
-  push();
-  resetMatrix();
-  textFont("monospace");
-  textSize(14);
-  textAlign(LEFT, TOP);
-  noStroke();
-  fill(0, 190);
-  rect(14, 14, 650, 88, 6);
-  fill(255);
-
-  for (let i = 0; i < lines.length; i++) {
-    text(lines[i], 28, 26 + i * 22);
-  }
-
-  pop();
-}
-
-function getCategoryDebugLine() {
-  const categories = [
-    ["B", birdAssets],
-    ["M", mammalAssets],
-    ["I", insectAssets],
-    ["R", reptileAssets]
-  ];
-
-  const counts = categories.map(([label, assets]) => {
-    const total = assets.length;
-    const active = assets.filter((asset) => !isAssetAvailable(asset)).length;
-    return `${label} ${active}/${total}`;
-  });
-
-  return `Active animals: ${activeLayers.length} layers; ${counts.join("  ")}`;
 }
 
 function drawMovingLayer(layer) {
