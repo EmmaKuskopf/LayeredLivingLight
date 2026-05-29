@@ -42,7 +42,7 @@ The artwork scene itself is designed at 9600 x 1080. The browser scales that sce
 ## Install
 
 1. Install Node.js from `https://nodejs.org/`.
-2. Clone this project onto the installation computer:
+2. Open the GitHub repository at `https://github.com/emmakuskopf/LayeredLivingLight`, then clone this project onto the installation computer:
 
 ```bash
 git clone git@github.com:emmakuskopf/LayeredLivingLight.git
@@ -69,7 +69,7 @@ http://localhost:5173/
 7. Click once, press a category key, or scan a placard to unlock browser audio.
 8. Put the browser into fullscreen or kiosk display mode.
 
-## Updating From GitHub
+## Receiving Updates
 
 This folder is a Git repository on the `main` branch. The project remote is:
 
@@ -77,13 +77,13 @@ This folder is a Git repository on the `main` branch. The project remote is:
 git@github.com:emmakuskopf/LayeredLivingLight.git
 ```
 
-To get the latest version on the installation computer:
+If this installation was cloned with Git, pull the latest approved version before running the installation:
 
 ```bash
 git pull origin main
 ```
 
-To publish local changes back to GitHub:
+Most installation computers should not publish changes back to GitHub. If a maintainer intentionally edits the project onsite and has repository write access, they can save those changes with:
 
 ```bash
 git status
