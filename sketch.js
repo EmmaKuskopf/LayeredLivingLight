@@ -141,7 +141,7 @@ const ambientSoundSettings = {
 
 const nightAmbientSoundSettings = {
   path: "assets/audio/boobook-owl-calls-roisin-gleeson.m4a",
-  maxVolume: 0.42,
+  maxVolume: 0.68,
   smoothing: 0.045
 };
 
@@ -274,7 +274,7 @@ const backgroundLayerSettings = [
 const staticScenePropSettings = [
   {
     name: "tallySign",
-    path: "assets/png/tally sign/1x/Sign.png",
+    path: "assets/png/tally sign/1x/sign.png",
     x: 3665,
     y: 832,
     width: 456,

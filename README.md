@@ -7,7 +7,7 @@ The app runs as a local browser-based installation. It uses AprilTag placards an
 ## Tech Stack
 
 - HTML, CSS, JavaScript
-- p5.js loaded from CDN
+- p5.js 1.9.0 loaded from CDN
 - Local Node.js static server with hot reload
 - AprilTag detector assets in `assets/vendor/apriltag`
 - PNG-based animal and background animation layers
@@ -33,13 +33,24 @@ The app runs as a local browser-based installation. It uses AprilTag placards an
 - Node.js 18 or newer
 - Chrome recommended for the installation browser
 - Webcam for AprilTag scanning
-- Projector/display set to the required output resolution
+- Projector/display set to the intended installation resolution
 - Printed AprilTag placards from `assets/placards/placards.html`
+- Internet access on first load, because p5.js is currently loaded from a CDN
+
+The artwork scene itself is designed at 9600 x 1080. The browser scales that scene to the available display area while preserving its aspect ratio.
 
 ## Install
 
 1. Install Node.js from `https://nodejs.org/`.
-2. Copy or clone this project onto the installation computer.
+2. Clone this project onto the installation computer:
+
+```bash
+git clone git@github.com:EmmaKuskopf/LayeredLivingLight.git
+cd LayeredLivingLight
+```
+
+If the installation computer does not have GitHub SSH access, download the repository as a ZIP from GitHub instead, unzip it, and open Terminal in the unzipped project folder.
+
 3. Open Terminal in the project folder.
 4. Run:
 
@@ -58,26 +69,27 @@ http://localhost:5173/
 7. Click once, press a category key, or scan a placard to unlock browser audio.
 8. Put the browser into fullscreen or kiosk display mode.
 
-## Publishing To GitHub
+## Updating From GitHub
 
-This folder is a Git repository on the `main` branch.
-
-To publish it to GitHub:
-
-1. Create an empty GitHub repository named something like `LayeredLivingLight`.
-2. Do not initialise the GitHub repo with a README, license, or `.gitignore`.
-3. In this project folder, run:
+This folder is a Git repository on the `main` branch. The project remote is:
 
 ```bash
-git remote add origin https://github.com/YOUR-USERNAME/LayeredLivingLight.git
-git push -u origin main
+git@github.com:EmmaKuskopf/LayeredLivingLight.git
 ```
 
-If using SSH instead of HTTPS:
+To get the latest version on the installation computer:
 
 ```bash
-git remote add origin git@github.com:YOUR-USERNAME/LayeredLivingLight.git
-git push -u origin main
+git pull origin main
+```
+
+To publish local changes back to GitHub:
+
+```bash
+git status
+git add .
+git commit -m "Describe the update"
+git push origin main
 ```
 
 ## Running The Installation
@@ -96,6 +108,12 @@ http://localhost:5173/
 
 The app starts in night mode. After the first successful animal trigger, it transitions to day. Once the last active animal leaves the scene, the app waits 45 seconds, then fades back to night.
 
+The server runs at port 5173 by default. To use a different port:
+
+```bash
+PORT=5174 npm run dev
+```
+
 ## Controls
 
 AprilTags are the intended public interaction.
@@ -107,8 +125,6 @@ Keyboard fallbacks:
 - `I` - insects
 - `R` - reptiles
 - `/` or `?` - mystery rare animal
-- `C` - copy placement points
-- `U` - undo last placement point
 
 ## Audio
 
@@ -144,6 +160,7 @@ Current tag categories:
 
 - Confirm `npm run dev` starts without errors.
 - Confirm `http://localhost:5173/` loads.
+- Confirm the installation browser has internet access for the p5.js CDN script, or vendor p5.js locally before installing offline.
 - Confirm camera permission is allowed.
 - Confirm AprilTags trigger the correct categories.
 - Confirm keyboard fallbacks work.
@@ -172,6 +189,9 @@ Before final install:
 
 - Keep all assets inside the project folder.
 - Do not rename asset files unless the matching JSON/settings references are updated.
+- Animal placement, category, motion, rarity, and size live in `assets/animals/animation-presets.json`.
+- Rare nature companion effects live in `assets/animals/nature-presets.json`.
+- Replacement PNGs should keep the same filenames when possible.
 - Test in the exact browser and display setup used onsite.
 - Disable system sleep and screen saver.
 - Use a stable power source and fixed webcam position.
