@@ -256,19 +256,19 @@ const categoryAssetLists = [
 ];
 
 const backgroundLayerSettings = [
-  { index: 1, name: "sky", path: "assets/BACKGROUND/fullwidth/200ppi/1-Sky.png" },
-  { index: 2, name: "clouds", path: "assets/BACKGROUND/fullwidth/200ppi/2-Clouds.png", moving: true },
-  { index: 3, name: "sunset", path: "assets/BACKGROUND/fullwidth/200ppi/3-Sunset.png" },
-  { index: 4, name: "seaAndTrees", path: "assets/BACKGROUND/fullwidth/200ppi/4-sea and trees.png" },
-  { index: 5, name: "glasshouseBackground", path: "assets/BACKGROUND/fullwidth/200ppi/5-glasshouse background.png" },
-  { index: 6, name: "leftMountains", path: "assets/BACKGROUND/fullwidth/200ppi/6-left mountains background.png" },
-  { index: 7, name: "rightMountains", path: "assets/BACKGROUND/fullwidth/200ppi/7-right mountains background.png" },
-  { index: 8, name: "rightHillFront", path: "assets/BACKGROUND/fullwidth/200ppi/8-right hill front.png" },
-  { index: 9, name: "treesAndRocksRight", path: "assets/BACKGROUND/fullwidth/200ppi/9-trees and rocks right.png" },
-  { index: 10, name: "treesForeground", path: "assets/BACKGROUND/fullwidth/200ppi/10-trees foreground.png", foreground: true },
-  { index: 11, name: "rocksStream", path: "assets/BACKGROUND/fullwidth/200ppi/11-rocks stream.png", foreground: true },
-  { index: 12, name: "treesLeft", path: "assets/BACKGROUND/fullwidth/200ppi/12-trees left.png", foreground: true },
-  { index: 13, name: "treeLeft", path: "assets/BACKGROUND/fullwidth/200ppi/13-Tree left.png", foreground: true }
+  { index: 1, name: "sky", path: "assets/BACKGROUND/fullwidth/200ppi/01-sky.png" },
+  { index: 2, name: "clouds", path: "assets/BACKGROUND/fullwidth/200ppi/02-clouds.png", moving: true },
+  { index: 3, name: "sunset", path: "assets/BACKGROUND/fullwidth/200ppi/03-sunset.png" },
+  { index: 4, name: "seaAndTrees", path: "assets/BACKGROUND/fullwidth/200ppi/04-sea-and-trees.png" },
+  { index: 5, name: "glasshouseBackground", path: "assets/BACKGROUND/fullwidth/200ppi/05-glasshouse-background.png" },
+  { index: 6, name: "leftMountains", path: "assets/BACKGROUND/fullwidth/200ppi/06-left-mountains-background.png" },
+  { index: 7, name: "rightMountains", path: "assets/BACKGROUND/fullwidth/200ppi/07-right-mountains-background.png" },
+  { index: 8, name: "rightHillFront", path: "assets/BACKGROUND/fullwidth/200ppi/08-right-hill-front.png" },
+  { index: 9, name: "treesAndRocksRight", path: "assets/BACKGROUND/fullwidth/200ppi/09-trees-and-rocks-right.png" },
+  { index: 10, name: "treesForeground", path: "assets/BACKGROUND/fullwidth/200ppi/10-trees-foreground.png", foreground: true },
+  { index: 11, name: "rocksStream", path: "assets/BACKGROUND/fullwidth/200ppi/11-rocks-stream.png", foreground: true },
+  { index: 12, name: "treesLeft", path: "assets/BACKGROUND/fullwidth/200ppi/12-trees-left.png", foreground: true },
+  { index: 13, name: "treeLeft", path: "assets/BACKGROUND/fullwidth/200ppi/13-tree-left.png", foreground: true }
 ];
 
 const staticScenePropSettings = [
@@ -555,15 +555,15 @@ function makeNatureCompanionForPreset(preset) {
 }
 
 function getNaturePresetForAnimal(preset) {
-  if (preset.name === "curlew2") {
+  if (preset.name === "curlew-02") {
     return naturePresetByName.curlew;
   }
 
-  if (preset.name === "frittilary2") {
+  if (preset.name === "frittilary-02") {
     return naturePresetByName.frittilary;
   }
 
-  if (preset.name === "spottedquoll") {
+  if (preset.name === "spotted-quoll") {
     return naturePresetByName.quoll;
   }
 

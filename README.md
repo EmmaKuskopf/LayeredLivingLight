@@ -189,6 +189,7 @@ Before final install:
 
 - Keep all assets inside the project folder.
 - Do not rename asset files unless the matching JSON/settings references are updated.
+- Asset filenames use lowercase kebab-case, with two-digit suffixes for variants, such as `magpie-01.png` or `07-right-mountains-background.png`.
 - Animal placement, category, motion, rarity, and size live in `assets/animals/animation-presets.json`.
 - Rare nature companion effects live in `assets/animals/nature-presets.json`.
 - Replacement PNGs should keep the same filenames when possible.

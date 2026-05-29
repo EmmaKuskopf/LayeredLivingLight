@@ -1,9 +1,9 @@
 {
   "birds": [
     {
-      "name": "magpie1",
+      "name": "magpie-01",
       "rarity": "normal",
-      "image": "assets/png/1x/magpie1.png",
+      "image": "assets/png/1x/magpie-01.png",
       "x": 4762,
       "y": 517,
       "size": 337,
@@ -18,9 +18,9 @@
       ]
     },
     {
-      "name": "magpie2",
+      "name": "magpie-02",
       "rarity": "normal",
-      "image": "assets/png/1x/magpie2.png",
+      "image": "assets/png/1x/magpie-02.png",
       "x": 4935,
       "y": 543,
       "size": 337,
@@ -35,9 +35,9 @@
       ]
     },
     {
-      "name": "magpie-ground1",
+      "name": "magpie-ground-01",
       "rarity": "normal",
-      "image": "assets/png/1x/magpie-ground1.png",
+      "image": "assets/png/1x/magpie-ground-01.png",
       "x": 2230,
       "y": 895,
       "size": 331,
@@ -52,9 +52,9 @@
       ]
     },
     {
-      "name": "magpie-ground2",
+      "name": "magpie-ground-02",
       "rarity": "normal",
-      "image": "assets/png/1x/magpie-ground2.png",
+      "image": "assets/png/1x/magpie-ground-02.png",
       "x": 2378,
       "y": 976,
       "size": 330,
@@ -69,9 +69,9 @@
       ]
     },
     {
-      "name": "cockatoo-front1",
+      "name": "cockatoo-front-01",
       "rarity": "normal",
-      "image": "assets/png/1x/cockatoo-front1.png",
+      "image": "assets/png/1x/cockatoo-front-01.png",
       "x": 6824,
       "y": 170,
       "size": 331,
@@ -86,9 +86,9 @@
       ]
     },
     {
-      "name": "cockatoo-front2",
+      "name": "cockatoo-front-02",
       "rarity": "normal",
-      "image": "assets/png/1x/cockatoo-front2.png",
+      "image": "assets/png/1x/cockatoo-front-02.png",
       "x": 7074,
       "y": 349,
       "size": 331,
@@ -103,9 +103,9 @@
       ]
     },
     {
-      "name": "cockatoo-front3",
+      "name": "cockatoo-front-03",
       "rarity": "normal",
-      "image": "assets/png/1x/cockatoo-front3.png",
+      "image": "assets/png/1x/cockatoo-front-03.png",
       "x": 7206,
       "y": 99,
       "size": 331,
@@ -120,9 +120,9 @@
       ]
     },
     {
-      "name": "cockatoo-front4",
+      "name": "cockatoo-front-04",
       "rarity": "normal",
-      "image": "assets/png/1x/cockatoo-front4.png",
+      "image": "assets/png/1x/cockatoo-front-04.png",
       "x": 5640,
       "y": 476,
       "size": 331,
@@ -137,9 +137,9 @@
       ]
     },
     {
-      "name": "cockatoo-front5",
+      "name": "cockatoo-front-05",
       "rarity": "normal",
-      "image": "assets/png/1x/cockatoo-front5.png",
+      "image": "assets/png/1x/cockatoo-front-05.png",
       "x": 5767,
       "y": 252,
       "size": 331,
@@ -154,9 +154,9 @@
       ]
     },
     {
-      "name": "cockatoo-front6",
+      "name": "cockatoo-front-06",
       "rarity": "normal",
-      "image": "assets/png/1x/cockatoo-front6.png",
+      "image": "assets/png/1x/cockatoo-front-06.png",
       "x": 5900,
       "y": 486,
       "size": 331,
@@ -171,9 +171,9 @@
       ]
     },
     {
-      "name": "cockatoo-background1",
+      "name": "cockatoo-background-01",
       "rarity": "normal",
-      "image": "assets/png/1x/cockatoo-background1.png",
+      "image": "assets/png/1x/cockatoo-background-01.png",
       "x": 7513,
       "y": 420,
       "size": 330,
@@ -189,9 +189,9 @@
       "renderBehindLayer": 9
     },
     {
-      "name": "cockatoo-background2",
+      "name": "cockatoo-background-02",
       "rarity": "normal",
-      "image": "assets/png/1x/cocktoo-background2.png",
+      "image": "assets/png/1x/cockatoo-background-02.png",
       "x": 7589,
       "y": 553,
       "size": 331,
@@ -207,9 +207,9 @@
       "renderBehindLayer": 9
     },
     {
-      "name": "cockatoo-background3",
+      "name": "cockatoo-background-03",
       "rarity": "normal",
-      "image": "assets/png/1x/cockatoo-background3.png",
+      "image": "assets/png/1x/cockatoo-background-03.png",
       "x": 7752,
       "y": 451,
       "size": 331,
@@ -261,7 +261,7 @@
     {
       "name": "curlew",
       "rarity": "rare",
-      "image": "assets/png/1x/curlew1.png",
+      "image": "assets/png/1x/curlew-01.png",
       "x": 1914,
       "y": 379,
       "size": 331,
@@ -277,9 +277,9 @@
       "renderBehindLayer": 9
     },
     {
-      "name": "curlew2",
+      "name": "curlew-02",
       "rarity": "rare",
-      "image": "assets/png/1x/curlew2.png",
+      "image": "assets/png/1x/curlew-02.png",
       "x": 2031,
       "y": 369,
       "size": 330,
@@ -331,9 +331,9 @@
       ]
     },
     {
-      "name": "spottedquoll",
+      "name": "spotted-quoll",
       "rarity": "rare",
-      "image": "assets/png/1x/spottedquoll.png",
+      "image": "assets/png/1x/spotted-quoll.png",
       "x": 6339,
       "y": 976,
       "size": 331,
@@ -348,9 +348,9 @@
       ]
     },
     {
-      "name": "wallaby-front1",
+      "name": "wallaby-front-01",
       "rarity": "normal",
-      "image": "assets/png/1x/wallaby-front1.png",
+      "image": "assets/png/1x/wallaby-front-01.png",
       "x": 1643,
       "y": 721,
       "size": 330,
@@ -365,9 +365,9 @@
       ]
     },
     {
-      "name": "wallaby-front2",
+      "name": "wallaby-front-02",
       "rarity": "normal",
-      "image": "assets/png/1x/wallaby-front2.png",
+      "image": "assets/png/1x/wallaby-front-02.png",
       "x": 2052,
       "y": 665,
       "size": 331,
@@ -382,9 +382,9 @@
       ]
     },
     {
-      "name": "wallaby-front3",
+      "name": "wallaby-front-03",
       "rarity": "normal",
-      "image": "assets/png/1x/wallaby-front3.png",
+      "image": "assets/png/1x/wallaby-front-03.png",
       "x": 2159,
       "y": 588,
       "size": 331,
@@ -399,9 +399,9 @@
       ]
     },
     {
-      "name": "wallaby-front4",
+      "name": "wallaby-front-04",
       "rarity": "normal",
-      "image": "assets/png/1x/wallaby-front4.png",
+      "image": "assets/png/1x/wallaby-front-04.png",
       "x": 2138,
       "y": 502,
       "size": 331,
@@ -416,9 +416,9 @@
       ]
     },
     {
-      "name": "wallaby-front5",
+      "name": "wallaby-front-05",
       "rarity": "normal",
-      "image": "assets/png/1x/wallaby-front5.png",
+      "image": "assets/png/1x/wallaby-front-05.png",
       "x": 2292,
       "y": 543,
       "size": 331,
@@ -433,9 +433,9 @@
       ]
     },
     {
-      "name": "wallaby-background1",
+      "name": "wallaby-background-01",
       "rarity": "normal",
-      "image": "assets/png/1x/wallaby-background1.png",
+      "image": "assets/png/1x/wallaby-background-01.png",
       "x": 8115,
       "y": 471,
       "size": 330,
@@ -451,9 +451,9 @@
       "renderBehindLayer": 9
     },
     {
-      "name": "wallaby-background2",
+      "name": "wallaby-background-02",
       "rarity": "normal",
-      "image": "assets/png/1x/wallaby-background2.png",
+      "image": "assets/png/1x/wallaby-background-02.png",
       "x": 8207,
       "y": 400,
       "size": 331,
@@ -469,9 +469,9 @@
       "renderBehindLayer": 9
     },
     {
-      "name": "wallaby-background3",
+      "name": "wallaby-background-03",
       "rarity": "normal",
-      "image": "assets/png/1x/wallaby-background3.png",
+      "image": "assets/png/1x/wallaby-background-03.png",
       "x": 8217,
       "y": 471,
       "size": 330,
@@ -506,9 +506,9 @@
       ]
     },
     {
-      "name": "butterfly1",
+      "name": "butterfly-01",
       "rarity": "normal",
-      "image": "assets/png/1x/butterfly1.png",
+      "image": "assets/png/1x/butterfly-01.png",
       "x": 4277,
       "y": 987,
       "size": 331,
@@ -523,9 +523,9 @@
       ]
     },
     {
-      "name": "butterfly2",
+      "name": "butterfly-02",
       "rarity": "normal",
-      "image": "assets/png/1x/butterfly2.png",
+      "image": "assets/png/1x/butterfly-02.png",
       "x": 4404,
       "y": 890,
       "size": 330,
@@ -540,9 +540,9 @@
       ]
     },
     {
-      "name": "butterfly2",
+      "name": "butterfly-03",
       "rarity": "normal",
-      "image": "assets/png/1x/butterfly3.png",
+      "image": "assets/png/1x/butterfly-03.png",
       "x": 4675,
       "y": 1033,
       "size": 331,
@@ -557,9 +557,9 @@
       ]
     },
     {
-      "name": "frittilary",
+      "name": "frittilary-01",
       "rarity": "rare",
-      "image": "assets/png/1x/frittilary.png",
+      "image": "assets/png/1x/frittilary-01.png",
       "x": 6997,
       "y": 803,
       "size": 330,
@@ -576,7 +576,7 @@
     {
       "name": "frittilary",
       "rarity": "rare",
-      "image": "assets/png/1x/frittilary2.png",
+      "image": "assets/png/1x/frittilary-02.png",
       "x": 7130,
       "y": 895,
       "size": 331,
@@ -591,9 +591,9 @@
       ]
     },
     {
-      "name": "dragonfly1",
+      "name": "dragonfly-01",
       "rarity": "normal",
-      "image": "assets/png/1x/dragonfly1.png",
+      "image": "assets/png/1x/dragonfly-01.png",
       "x": 9233,
       "y": 844,
       "size": 331,
@@ -608,9 +608,9 @@
       ]
     },
     {
-      "name": "dragonfly2",
+      "name": "dragonfly-02",
       "rarity": "normal",
-      "image": "assets/png/1x/dragonfly2.png",
+      "image": "assets/png/1x/dragonfly-02.png",
       "x": 9345,
       "y": 711,
       "size": 331,
@@ -625,9 +625,9 @@
       ]
     },
     {
-      "name": "dragonfly3",
+      "name": "dragonfly-03",
       "rarity": "normal",
-      "image": "assets/png/1x/dragonfly3.png",
+      "image": "assets/png/1x/dragonfly-03.png",
       "x": 9238,
       "y": 619,
       "size": 331,
@@ -644,9 +644,9 @@
   ],
   "reptiles": [
     {
-      "name": "lacemonitor",
+      "name": "lace-monitor",
       "rarity": "normal",
-      "image": "assets/png/1x/lacemonitor.png",
+      "image": "assets/png/1x/lace-monitor.png",
       "x": 6788,
       "y": 884,
       "size": 331,
@@ -661,9 +661,9 @@
       ]
     },
     {
-      "name": "gecko1",
+      "name": "gecko-01",
       "rarity": "normal",
-      "image": "assets/png/1x/gecko1.png",
+      "image": "assets/png/1x/gecko-01.png",
       "x": 8503,
       "y": 1007,
       "size": 331,
@@ -678,9 +678,9 @@
       ]
     },
     {
-      "name": "gecko2",
+      "name": "gecko-02",
       "rarity": "normal",
-      "image": "assets/png/1x/gecko2.png",
+      "image": "assets/png/1x/gecko-02.png",
       "x": 8625,
       "y": 1043,
       "size": 330,
