@@ -45,7 +45,7 @@ The artwork scene itself is designed at 9600 x 1080. The browser scales that sce
 2. Clone this project onto the installation computer:
 
 ```bash
-git clone git@github.com:EmmaKuskopf/LayeredLivingLight.git
+git clone git@github.com:emmakuskopf/LayeredLivingLight.git
 cd LayeredLivingLight
 ```
 
@@ -74,7 +74,7 @@ http://localhost:5173/
 This folder is a Git repository on the `main` branch. The project remote is:
 
 ```bash
-git@github.com:EmmaKuskopf/LayeredLivingLight.git
+git@github.com:emmakuskopf/LayeredLivingLight.git
 ```
 
 To get the latest version on the installation computer:
