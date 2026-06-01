@@ -120,6 +120,7 @@ function watchDirectory(directory) {
 
 watchDirectory(root);
 watchDirectory(join(root, "assets", "BACKGROUND", "fullwidth", "200ppi"));
+watchDirectory(join(root, "assets", "BACKGROUND", "fullwidth", "scene"));
 
 server.listen(port, "0.0.0.0", () => {
   console.log(`Hot reload server running at http://localhost:${port}`);

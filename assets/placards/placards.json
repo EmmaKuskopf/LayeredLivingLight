@@ -28,5 +28,17 @@
     "label": "mystery",
     "tagFamily": "tag36h11",
     "image": "tags/apriltag-mystery-04.png"
+  },
+  {
+    "id": 5,
+    "label": "day",
+    "tagFamily": "tag36h11",
+    "image": "tags/apriltag-day-05.png"
+  },
+  {
+    "id": 6,
+    "label": "night",
+    "tagFamily": "tag36h11",
+    "image": "tags/apriltag-night-06.png"
   }
 ]

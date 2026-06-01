@@ -27,6 +27,7 @@ let placardDetections = [];
 let activeLayers = [];
 let sparkleBursts = [];
 let lastSceneActivity = 0;
+let dayEffectCycleStart = 0;
 let sceneEmptySince = 0;
 let nightSceneCountersActive = true;
 let nightAmount = 1;
@@ -37,6 +38,9 @@ let lastPlacardScan = 0;
 let heldPlacardId = null;
 let lastPlacardSeen = 0;
 let placardDetectionBusy = false;
+let lastCameraStartAttempt = 0;
+let cameraFallbackRequested = false;
+let cameraPermissionDenied = false;
 let aprilTagReady = false;
 let placardStatus = "AprilTag: starting";
 let lastDetectedPlacardLabel = "none";
@@ -46,14 +50,6 @@ const interactionMode = "apriltag";
 const sceneSize = {
   width: 9600,
   height: 1080
-};
-
-const paperTextureSettings = {
-  alpha: 96,
-  fiberAlpha: 76,
-  textureAlpha: 185,
-  width: 2667,
-  height: 300
 };
 
 const cloudSettings = {
@@ -133,10 +129,12 @@ const rustlePatchSettings = {
 
 const ambientSoundSettings = {
   path: "assets/audio/morning-birds-eumundi.mp3",
-  minVolume: 0.06,
-  maxVolume: 0.34,
-  fullSceneAnimalCount: 12,
-  smoothing: 0.025
+  minVolume: 0.045,
+  maxVolume: 0.58,
+  fullSceneAnimalCount: 6,
+  firstAnimalBoost: 0.28,
+  responseCurve: 0.7,
+  smoothing: 0.055
 };
 
 const nightAmbientSoundSettings = {
@@ -146,14 +144,17 @@ const nightAmbientSoundSettings = {
 };
 
 const animalGlowSettings = {
-  color: [255, 239, 174],
-  accentColor: [135, 232, 255],
-  baseAlpha: 34,
-  pulseAlpha: 69,
-  pulseDuration: 1800,
+  normalColor: [96, 178, 255],
+  normalAccentColor: [190, 228, 255],
+  rareColor: [255, 176, 64],
+  rareAccentColor: [255, 226, 148],
+  baseAlpha: 54,
+  pulseAlpha: 92,
+  rareAlphaMultiplier: 1.08,
+  pulseDuration: 2200,
   fadeDuration: 5000,
-  scale: 0.825,
-  blur: 16
+  scale: 1.28,
+  blur: 26
 };
 
 const animalMotionSettings = {
@@ -235,7 +236,8 @@ const placardSettings = {
   scanInterval: 180,
   triggerCooldown: 2200,
   holdResetDelay: 900,
-  tagPhysicalSizeMetres: 0.16
+  tagPhysicalSizeMetres: 0.16,
+  cameraRetryInterval: 1500
 };
 
 const categoryShortcutCooldown = 1200;
@@ -245,7 +247,9 @@ const placardDefinitions = {
   1: { label: "mammals", getAssets: () => mammalAssets },
   2: { label: "insects", getAssets: () => insectAssets },
   3: { label: "reptiles", getAssets: () => reptileAssets },
-  4: { label: "mystery", getAssets: getMysteryCategory }
+  4: { label: "mystery", getAssets: getMysteryCategory },
+  5: { label: "day", action: forceDayScene },
+  6: { label: "night", action: forceNightScene }
 };
 
 const categoryAssetLists = [
@@ -256,19 +260,19 @@ const categoryAssetLists = [
 ];
 
 const backgroundLayerSettings = [
-  { index: 1, name: "sky", path: "assets/BACKGROUND/fullwidth/200ppi/01-sky.png" },
-  { index: 2, name: "clouds", path: "assets/BACKGROUND/fullwidth/200ppi/02-clouds.png", moving: true },
-  { index: 3, name: "sunset", path: "assets/BACKGROUND/fullwidth/200ppi/03-sunset.png" },
-  { index: 4, name: "seaAndTrees", path: "assets/BACKGROUND/fullwidth/200ppi/04-sea-and-trees.png" },
-  { index: 5, name: "glasshouseBackground", path: "assets/BACKGROUND/fullwidth/200ppi/05-glasshouse-background.png" },
-  { index: 6, name: "leftMountains", path: "assets/BACKGROUND/fullwidth/200ppi/06-left-mountains-background.png" },
-  { index: 7, name: "rightMountains", path: "assets/BACKGROUND/fullwidth/200ppi/07-right-mountains-background.png" },
-  { index: 8, name: "rightHillFront", path: "assets/BACKGROUND/fullwidth/200ppi/08-right-hill-front.png" },
-  { index: 9, name: "treesAndRocksRight", path: "assets/BACKGROUND/fullwidth/200ppi/09-trees-and-rocks-right.png" },
-  { index: 10, name: "treesForeground", path: "assets/BACKGROUND/fullwidth/200ppi/10-trees-foreground.png", foreground: true },
-  { index: 11, name: "rocksStream", path: "assets/BACKGROUND/fullwidth/200ppi/11-rocks-stream.png", foreground: true },
-  { index: 12, name: "treesLeft", path: "assets/BACKGROUND/fullwidth/200ppi/12-trees-left.png", foreground: true },
-  { index: 13, name: "treeLeft", path: "assets/BACKGROUND/fullwidth/200ppi/13-tree-left.png", foreground: true }
+  { index: 1, name: "sky", path: "assets/BACKGROUND/fullwidth/scene/01-sky.png" },
+  { index: 2, name: "clouds", path: "assets/BACKGROUND/fullwidth/scene/02-clouds.png", moving: true },
+  { index: 3, name: "sunset", path: "assets/BACKGROUND/fullwidth/scene/03-sunset.png" },
+  { index: 4, name: "seaAndTrees", path: "assets/BACKGROUND/fullwidth/scene/04-sea-and-trees.png" },
+  { index: 5, name: "glasshouseBackground", path: "assets/BACKGROUND/fullwidth/scene/05-glasshouse-background.png" },
+  { index: 6, name: "leftMountains", path: "assets/BACKGROUND/fullwidth/scene/06-left-mountains-background.png" },
+  { index: 7, name: "rightMountains", path: "assets/BACKGROUND/fullwidth/scene/07-right-mountains-background.png" },
+  { index: 8, name: "rightHillFront", path: "assets/BACKGROUND/fullwidth/scene/08-right-hill-front.png" },
+  { index: 9, name: "treesAndRocksRight", path: "assets/BACKGROUND/fullwidth/scene/09-trees-and-rocks-right.png" },
+  { index: 10, name: "treesForeground", path: "assets/BACKGROUND/fullwidth/scene/10-trees-foreground.png", foreground: true },
+  { index: 11, name: "rocksStream", path: "assets/BACKGROUND/fullwidth/scene/11-rocks-stream.png", foreground: true },
+  { index: 12, name: "treesLeft", path: "assets/BACKGROUND/fullwidth/scene/12-trees-left.png", foreground: true },
+  { index: 13, name: "treeLeft", path: "assets/BACKGROUND/fullwidth/scene/13-tree-left.png", foreground: true }
 ];
 
 const staticScenePropSettings = [
@@ -580,13 +584,7 @@ async function setup() {
   setupInteractionKeyboard();
   setupAnimalAssets(animalPresetData || {});
 
-  applyPaperTreatmentToLayers();
-
-  video = createCapture(VIDEO);
-
-  video.size(640, 480);
-
-  video.hide();
+  setupCameraCapture();
 
   if (interactionMode === "hands") {
     await setupHandTracking();
@@ -599,6 +597,85 @@ async function setup() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+}
+
+function setupCameraCapture() {
+  video = createCapture({ video: true, audio: false }, () => {
+    configureCameraVideo();
+  });
+
+  video.size(640, 480);
+  video.hide();
+  configureCameraVideo();
+  ensureCameraPlaying(true);
+  requestCameraFallbackStream();
+}
+
+function configureCameraVideo() {
+  if (!video?.elt) return;
+
+  video.elt.muted = true;
+  video.elt.defaultMuted = true;
+  video.elt.playsInline = true;
+  video.elt.setAttribute("playsinline", "");
+  video.elt.setAttribute("muted", "");
+}
+
+function ensureCameraPlaying(force = false) {
+  if (!video?.elt) return;
+
+  const now = millis ? millis() : performance.now();
+
+  if (!force && now - lastCameraStartAttempt < placardSettings.cameraRetryInterval) {
+    return;
+  }
+
+  if (video.elt.readyState >= 2 && !video.elt.paused) {
+    return;
+  }
+
+  lastCameraStartAttempt = now;
+  configureCameraVideo();
+  requestCameraFallbackStream();
+
+  const playPromise = video.elt.play?.();
+
+  if (playPromise?.catch) {
+    playPromise.catch((error) => {
+      console.warn("Camera preview could not start yet", error);
+    });
+  }
+}
+
+function requestCameraFallbackStream() {
+  if (!video?.elt) return;
+  if (video.elt.srcObject) return;
+  if (cameraFallbackRequested) return;
+  if (cameraPermissionDenied) return;
+  if (!navigator.mediaDevices?.getUserMedia) {
+    console.warn("Camera fallback unavailable: mediaDevices.getUserMedia is not available.");
+    return;
+  }
+
+  cameraFallbackRequested = true;
+
+  navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 480 }, audio: false })
+    .then((stream) => {
+      video.elt.srcObject = stream;
+      configureCameraVideo();
+      return video.elt.play?.();
+    })
+    .then(() => {
+      placardStatus = "AprilTag: camera ready";
+    })
+    .catch((error) => {
+      cameraFallbackRequested = false;
+      if (error.name === "NotAllowedError" || error.name === "PermissionDeniedError") {
+        cameraPermissionDenied = true;
+      }
+      console.warn("Camera fallback stream failed", error);
+      placardStatus = `AprilTag: camera ${error.name || "error"}`;
+    });
 }
 
 function draw() {
@@ -819,6 +896,9 @@ function updateNightState() {
 
   if (sceneIsInactive) {
     nightSceneCountersActive = true;
+    if (nightAmount > 0.98) {
+      dayEffectCycleStart = 0;
+    }
   }
 
   nightAmount = lerp(nightAmount, targetNightAmount, nightSceneSettings.fadeSpeed);
@@ -830,7 +910,24 @@ function getActiveAnimalLayerCount() {
 
 function markSceneActivity() {
   lastSceneActivity = millis();
+  if (dayEffectCycleStart === 0) {
+    dayEffectCycleStart = lastSceneActivity;
+  }
   nightSceneCountersActive = false;
+}
+
+function forceDayScene() {
+  markSceneActivity();
+  sceneEmptySince = millis();
+  placardStatus = "Scene: day";
+}
+
+function forceNightScene() {
+  lastSceneActivity = 0;
+  sceneEmptySince = 0;
+  dayEffectCycleStart = 0;
+  nightSceneCountersActive = true;
+  placardStatus = "Scene: night";
 }
 
 function drawNightLayerOverlay(layer) {
@@ -844,12 +941,12 @@ function drawNightLayerOverlay(layer) {
   noStroke();
   blendMode(MULTIPLY);
 
-  if (layer.index <= 3 || !layer.nightOverlay) {
+  if (layer.index <= 3) {
     fill(...nightSceneSettings.skyColor, alpha);
     rect(0, 0, sceneSize.width, sceneSize.height);
   } else {
-    tint(255, alpha);
-    image(layer.nightOverlay, 0, 0, sceneSize.width, sceneSize.height);
+    tint(...nightSceneSettings.backgroundColor, alpha);
+    image(layer.img, 0, 0, sceneSize.width, sceneSize.height);
     noTint();
   }
 
@@ -914,9 +1011,9 @@ function getNightSkyEffectAmount() {
 function drawDayLeafWind() {
   const daylightAmount = 1 - nightAmount;
 
-  if (daylightAmount < 0.02 || lastSceneActivity === 0) return;
+  if (daylightAmount < 0.02 || dayEffectCycleStart === 0) return;
 
-  const elapsed = (millis() - lastSceneActivity) % leafWindSettings.interval;
+  const elapsed = (millis() - dayEffectCycleStart) % leafWindSettings.interval;
 
   if (elapsed > leafWindSettings.duration) return;
 
@@ -958,10 +1055,9 @@ function drawWindLeaf(x, y, size, rotation, color, alpha) {
 function drawDayRustlePatch() {
   const daylightAmount = 1 - nightAmount;
 
-  if (daylightAmount < 0.02) return;
+  if (daylightAmount < 0.02 || dayEffectCycleStart === 0) return;
 
-  const rustleStart = lastSceneActivity || 0;
-  const elapsed = (millis() - rustleStart) % rustlePatchSettings.interval;
+  const elapsed = (millis() - dayEffectCycleStart) % rustlePatchSettings.interval;
 
   if (elapsed > rustlePatchSettings.duration) return;
 
@@ -1027,7 +1123,10 @@ function getRustleBladePoint(t, length, bend) {
 
 function drawCategoryTallies() {
   for (const tally of categoryTallySettings) {
-    drawTallyNumber(tally.x, tally.y, getActiveCategoryCount(tally.category));
+    const count = getActiveCategoryCount(tally.category);
+    const maxCount = getCategoryMaxCount(tally.category);
+
+    drawTallyNumber(tally.x, tally.y, count, maxCount > 0 && count >= maxCount);
   }
 }
 
@@ -1047,11 +1146,25 @@ function getNightSceneCategoryCount(category) {
   return nightSceneAnimals.filter((animal) => animal.category === category).length;
 }
 
+function getCategoryMaxCount(category) {
+  if (category === "rare") {
+    return categoryAssetLists.reduce((total, categoryAssets) => (
+      total + categoryAssets.assets().filter((asset) => asset.rarity === "rare").length
+    ), 0);
+  }
+
+  const categoryAssets = categoryAssetLists.find((assetList) => assetList.label === category);
+
+  return categoryAssets ? categoryAssets.assets().length : 0;
+}
+
 function nightSceneAnimalsAreVisible() {
   return nightAmount >= 0.01;
 }
 
-function drawTallyNumber(x, y, count) {
+function drawTallyNumber(x, y, count, isFull = false) {
+  const fillColor = isFull ? [42, 146, 83, 255] : [35, 29, 24, 240];
+
   push();
   textAlign(CENTER, CENTER);
   textFont("monospace");
@@ -1059,7 +1172,7 @@ function drawTallyNumber(x, y, count) {
   textSize(54);
   stroke(255, 246, 218, 210);
   strokeWeight(8);
-  fill(35, 29, 24, 240);
+  fill(...fillColor);
   text(count, x, y);
   pop();
 }
@@ -1080,106 +1193,7 @@ function drawMovingLayer(layer) {
 }
 
 function drawBackgroundLayer(layer, offsetX = 0, offsetY = 0) {
-  if (layer.index >= 4) {
-    drawingContext.shadowColor = "rgba(28, 22, 16, 0.34)";
-    drawingContext.shadowBlur = 26;
-    drawingContext.shadowOffsetX = 0;
-    drawingContext.shadowOffsetY = 12;
-  }
-
-  image(layer.renderImg || layer.img, offsetX, offsetY, sceneSize.width, sceneSize.height);
-
-  drawingContext.shadowColor = "rgba(0, 0, 0, 0)";
-  drawingContext.shadowBlur = 0;
-  drawingContext.shadowOffsetX = 0;
-  drawingContext.shadowOffsetY = 0;
-}
-
-function applyPaperTreatmentToLayers() {
-  for (const layer of backgroundLayers) {
-    layer.renderImg = createPaperLayerImage(layer);
-    layer.nightOverlay = createNightLayerOverlay(layer);
-  }
-}
-
-function createNightLayerOverlay(layer) {
-  if (layer.index <= 3) return null;
-
-  const overlay = createGraphics(paperTextureSettings.width, paperTextureSettings.height);
-
-  overlay.canvas.style.display = "none";
-  overlay.clear();
-  overlay.noStroke();
-  overlay.background(...nightSceneSettings.backgroundColor, 255);
-  overlay.drawingContext.save();
-  overlay.drawingContext.globalCompositeOperation = "destination-in";
-  overlay.image(layer.renderImg || layer.img, 0, 0, overlay.width, overlay.height);
-  overlay.drawingContext.restore();
-
-  return overlay;
-}
-
-function createPaperLayerImage(layer) {
-  const treated = createGraphics(paperTextureSettings.width, paperTextureSettings.height);
-  const texture = createPaperTexture(layer.index);
-
-  treated.canvas.style.display = "none";
-  treated.clear();
-  treated.image(layer.img, 0, 0, treated.width, treated.height);
-
-  treated.drawingContext.save();
-  treated.drawingContext.globalCompositeOperation = "multiply";
-  treated.tint(255, paperTextureSettings.textureAlpha);
-  treated.image(texture, 0, 0, treated.width, treated.height);
-  treated.noTint();
-  treated.drawingContext.globalCompositeOperation = "destination-in";
-  treated.image(layer.img, 0, 0, treated.width, treated.height);
-  treated.drawingContext.restore();
-
-  texture.remove();
-
-  return treated;
-}
-
-function createPaperTexture(layerIndex = 1) {
-  const texture = createGraphics(paperTextureSettings.width, paperTextureSettings.height);
-
-  texture.canvas.style.display = "none";
-  randomSeed(layerIndex * 9973);
-  texture.clear();
-  texture.noStroke();
-
-  const warmth = random(-8, 12);
-
-  texture.background(244 + warmth, 236 + warmth, 214 + warmth, 16);
-
-  for (let i = 0; i < 36000; i++) {
-    const shade = random(165, 255);
-    const alpha = random(10, paperTextureSettings.alpha);
-
-    texture.fill(shade, shade - random(0, 10), shade - random(8, 28), alpha);
-    texture.circle(
-      random(texture.width),
-      random(texture.height),
-      random(0.8, 3.2)
-    );
-  }
-
-  texture.strokeWeight(1.1);
-
-  for (let i = 0; i < 950; i++) {
-    const y = random(texture.height);
-    const x = random(texture.width);
-    const length = random(34, 180);
-    const shade = random(145, 235);
-
-    texture.stroke(shade, shade - random(0, 12), shade - random(10, 34), random(10, paperTextureSettings.fiberAlpha));
-    texture.line(x, y, x + length, y + random(-4.5, 4.5));
-  }
-
-  randomSeed();
-
-  return texture;
+  image(layer.img, offsetX, offsetY, sceneSize.width, sceneSize.height);
 }
 
 function detectHands() {
@@ -1330,6 +1344,8 @@ function updatePlacardDetection() {
     return;
   }
 
+  ensureCameraPlaying();
+
   if (!video?.elt?.videoWidth) {
     placardStatus = "AprilTag: waiting for camera";
     return;
@@ -1404,7 +1420,7 @@ function checkPlacards() {
     return;
   }
 
-  const didSpawn = spawnFromCategory(definition.getAssets(), definition.label);
+  const didSpawn = triggerPlacardDefinition(definition);
 
   if (!didSpawn) {
     lastTrigger = now;
@@ -1417,6 +1433,16 @@ function checkPlacards() {
   placardStatus = `AprilTag: triggered ${definition.label}`;
 
   console.log(`PLACARD: ${definition.label}`);
+}
+
+function triggerPlacardDefinition(definition) {
+  if (definition.action) {
+    startAmbientSound();
+    definition.action();
+    return true;
+  }
+
+  return spawnFromCategory(definition.getAssets(), definition.label);
 }
 
 function getStrongestKnownPlacard() {
@@ -1676,12 +1702,15 @@ function updateAmbientSoundVolume() {
 
   const activeAnimalCount = activeLayers.filter((layer) => !layer.parentAsset).length;
   const fullness = constrain(activeAnimalCount / ambientSoundSettings.fullSceneAnimalCount, 0, 1);
+  const shapedFullness = activeAnimalCount > 0
+    ? max(ambientSoundSettings.firstAnimalBoost, pow(fullness, ambientSoundSettings.responseCurve))
+    : 0;
   const daylightAmount = 1 - nightAmount;
 
   ambientTargetVolume = daylightAmount * lerp(
     ambientSoundSettings.minVolume,
     ambientSoundSettings.maxVolume,
-    fullness
+    shapedFullness
   );
   ambientCurrentVolume = lerp(
     ambientCurrentVolume,
@@ -1706,12 +1735,32 @@ function setupInteractionKeyboard() {
 
 function handleKeyboardShortcut(shortcutKey, isRepeat = false) {
   startAmbientSound();
+
+  if (handleSceneShortcut(shortcutKey, isRepeat)) {
+    return true;
+  }
+
   return handleCategoryShortcut(shortcutKey, isRepeat);
 }
 
 function keyPressed() {
   if (window.__interactionKeyboardReady) return;
   handleKeyboardShortcut(key);
+}
+
+function handleSceneShortcut(shortcutKey, isRepeat = false) {
+  const normalizedKey = shortcutKey.toLowerCase();
+
+  if (!["d", "n"].includes(normalizedKey)) return false;
+  if (isRepeat) return true;
+
+  if (normalizedKey === "d") {
+    forceDayScene();
+    return true;
+  }
+
+  forceNightScene();
+  return true;
 }
 
 function handleCategoryShortcut(shortcutKey, isRepeat = false) {
@@ -2022,30 +2071,34 @@ function drawLayerGlow(layer, age, alpha, motionScale) {
   if (layer.asset.noGlow) return;
   if (age > animalGlowSettings.fadeDuration) return;
 
+  const rare = isRareLayer(layer);
+  const glowColor = rare ? animalGlowSettings.rareColor : animalGlowSettings.normalColor;
+  const accentColor = rare ? animalGlowSettings.rareAccentColor : animalGlowSettings.normalAccentColor;
+  const rarityAlpha = rare ? animalGlowSettings.rareAlphaMultiplier : 1;
   const pulseProgress = constrain(age / animalGlowSettings.pulseDuration, 0, 1);
   const pulse = 1 - easeOutCubic(pulseProgress);
   const fadeProgress = constrain(age / animalGlowSettings.fadeDuration, 0, 1);
-  const fade = 1 - easeInOutSine(fadeProgress);
+  const fade = 1 - pow(fadeProgress, 2.6);
   const glowAlpha = min(
-    210,
-    (animalGlowSettings.baseAlpha + animalGlowSettings.pulseAlpha * pulse) * fade * (alpha / 255)
+    235,
+    (animalGlowSettings.baseAlpha + animalGlowSettings.pulseAlpha * pulse) * rarityAlpha * fade * (alpha / 255)
   );
   const glowSize = layer.size * motionScale * (animalGlowSettings.scale + pulse * 0.55);
-  const accentSize = glowSize * 0.58;
+  const accentSize = glowSize * 0.56;
 
   push();
   noStroke();
   blendMode(SCREEN);
   drawingContext.filter = `blur(${animalGlowSettings.blur}px)`;
-  fill(...animalGlowSettings.color, glowAlpha);
-  ellipse(0, 0, glowSize * 1.2, glowSize * 0.82);
-  fill(...animalGlowSettings.accentColor, glowAlpha * 0.5);
-  ellipse(0, 0, accentSize, accentSize * 0.7);
+  fill(...glowColor, glowAlpha);
+  ellipse(0, 0, glowSize, glowSize);
+  fill(...accentColor, glowAlpha * 0.56);
+  ellipse(0, 0, accentSize, accentSize);
   drawingContext.filter = "none";
   blendMode(BLEND);
 
-  fill(...animalGlowSettings.color, glowAlpha * 0.28);
-  ellipse(0, 0, glowSize * 0.95, glowSize * 0.62);
+  fill(...glowColor, glowAlpha * 0.34);
+  ellipse(0, 0, glowSize * 0.72, glowSize * 0.72);
   pop();
 }
 

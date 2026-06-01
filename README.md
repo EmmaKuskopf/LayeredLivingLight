@@ -19,7 +19,8 @@ The app runs as a local browser-based installation. It uses AprilTag placards an
 - `sketch.js` - main p5 scene, interaction, animation, audio, and rendering logic
 - `style.css` - page styling
 - `dev-server.js` - local server with hot reload and static asset MIME types
-- `assets/BACKGROUND/fullwidth/200ppi` - 9600 x 1080 layered background PNGs
+- `assets/BACKGROUND/fullwidth/200ppi` - source layered background PNGs
+- `assets/BACKGROUND/fullwidth/scene` - optimized 9600 x 1080 background PNGs used by the app
 - `assets/png/1x` - animal PNGs and night owl PNG
 - `assets/png/rare-nature/1x` - rare nature effect PNGs
 - `assets/animals/animation-presets.json` - animal placement/motion/category presets
@@ -125,6 +126,8 @@ Keyboard fallbacks:
 - `I` - insects
 - `R` - reptiles
 - `/` or `?` - mystery rare animal
+- `D` - switch/start day mode
+- `N` - switch/start night mode
 
 ## Audio
 
@@ -155,6 +158,8 @@ Current tag categories:
 - ID 2 - insects
 - ID 3 - reptiles
 - ID 4 - mystery rare animal
+- ID 5 - day mode
+- ID 6 - night mode
 
 ## Installation Checklist
 
@@ -190,6 +195,7 @@ Before final install:
 - Keep all assets inside the project folder.
 - Do not rename asset files unless the matching JSON/settings references are updated.
 - Asset filenames use lowercase kebab-case, with two-digit suffixes for variants, such as `magpie-01.png` or `07-right-mountains-background.png`.
+- The app uses the optimized background layers in `assets/BACKGROUND/fullwidth/scene`; regenerate these from `assets/BACKGROUND/fullwidth/200ppi` after changing source background artwork.
 - Animal placement, category, motion, rarity, and size live in `assets/animals/animation-presets.json`.
 - Rare nature companion effects live in `assets/animals/nature-presets.json`.
 - Replacement PNGs should keep the same filenames when possible.
