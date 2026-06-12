@@ -131,7 +131,7 @@ Keyboard fallbacks:
 
 ## Audio
 
-Browsers block autoplay. Audio starts only after the first user interaction.
+Browsers block autoplay. Audio starts only after the first user interaction. On initialisation, to trigger the night audio, use the keyboard fallback 'N', or the 'night' placard held to the camera.
 
 - Day ambience: `assets/audio/morning-birds-eumundi.mp3`
 - Night ambience: `assets/audio/boobook-owl-calls-roisin-gleeson.m4a`
